@@ -17,7 +17,7 @@ public class UserDataAccess {
      * @param password パスワード
      * @return 見つかったユーザー
      */
-    // public User findByEmailAndPassowrd() {
+    // public User findByEmailAndPassword() {
     //     return null;
     // }
 
