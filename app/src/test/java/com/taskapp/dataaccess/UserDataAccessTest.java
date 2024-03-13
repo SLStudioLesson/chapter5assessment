@@ -22,7 +22,7 @@ public class UserDataAccessTest {
     public void testFindByEmailAndPassword() {
         User expectedUser = new User(1, "鈴木一郎", "test1@example.com", "password1");
 
-        User actualUser = userDataAccess.findByEmailAndPassowrd("test1@example.com", "password1");
+        User actualUser = userDataAccess.findByEmailAndPassword("test1@example.com", "password1");
 
         assertThat(actualUser).isEqualToComparingFieldByField(expectedUser);
     }
