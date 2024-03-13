@@ -36,13 +36,13 @@ public class UserLogicTest {
         User user = new User(1, "John", email, password);
 
         // Mock the findByEmailAndPassword method of userDataAccess to return the mock user
-        when(userDataAccess.findByEmailAndPassowrd(email, password)).thenReturn(user);
+        when(userDataAccess.findByEmailAndPassword(email, password)).thenReturn(user);
 
         // Call the login method
         User result = userLogic.login(email, password);
 
         // Verify that the findByEmailAndPassword method of userDataAccess is called
-        verify(userDataAccess).findByEmailAndPassowrd(email, password);
+        verify(userDataAccess).findByEmailAndPassword(email, password);
 
         // Verify that the returned user is the expected user
         assertThat(result).isEqualToComparingFieldByField(user);
