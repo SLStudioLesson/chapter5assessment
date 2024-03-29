@@ -92,6 +92,13 @@ Task_Code,Change_User_Code,Status,Change_Date
 ### 設問
 
 以下条件と出力例を基にログイン機能を実装してください。
+**実装・修正が必要なメソッド**
+- TaskUI#displayMenu
+- TaskUI#inputLogin
+- UserLogic#login
+- UserDataAccess#findByEmailAndPassword
+
+**仕様**
 - メールアドレスとパスワードを入力させること
   - メールアドレスを入力させるときは「メールアドレスを入力してください：」というメッセージを表示する
   - パスワードを入力させるときは「パスワードを入力してください：」というメッセージを表示する
@@ -154,6 +161,13 @@ Task_Code,Change_User_Code,Status,Change_Date
 
 以下条件を基に `tasks.csv` のデータを一覧表示する機能を実装してください。
 
+**実装・修正が必要なメソッド**
+- TaskUI#displayMenu
+- TaskLogic#showAll
+- TaskDataAccess#findAll
+- UserDataAccess#findByCode
+
+**仕様**
 - ログイン後に表示されるメインメニューから選択できるようにすること
 - `status` の値に応じて表示を変えるようにすること
   - 0→未着手、1→着手中、2→完了
@@ -208,6 +222,15 @@ Task_Code,Change_User_Code,Status,Change_Date
 
 以下条件を基に、タスク新規登録機能を実装してください。
 
+**実装・修正が必要なメソッド**
+- TaskUI#displayMenu
+- TaskUI#inputNewInformation
+- TaskUI#isNumeric
+- TaskLogic#save
+- TaskDataAccess#save
+- LogDataAccess#save
+
+**仕様**
 - ログイン後に表示されるメインメニューから選択できるようにすること
 - タスクコード、タスク名、タスクを担当するユーザーコードを入力させる
   - タスクコードを入力させるときは「タスクコードを入力してください：」と表示する
@@ -323,6 +346,15 @@ taskEの登録が完了しました。
 
 以下条件を基にタスクのステータスを更新する機能を実装してください。
 
+**実装・修正が必要なメソッド**
+- TaskUI#displayMenu
+- TaskUI#selectSubMenu
+- TaskUI#inputChangeInformation
+- TaskLogic#changeStatus
+- TaskDataAccess#findByCode
+- TaskDataAccess#update
+
+**仕様**
 - タスク一覧表示後に、ステータス更新機能を選択できるサブメニューを追加すること
   ```
   以下1~2から好きな選択肢を選んでください。
@@ -475,6 +507,14 @@ taskEの登録が完了しました。
 
 以下条件を基にタスクを削除する機能を実装してください。
 
+**実装・修正が必要なメソッド**
+- TaskUI#selectSubMenu
+- TaskUI#inputDeleteInformation
+- TaskLogic#delete
+- TaskDataAccess#delete
+- TaskDataAccess#deleteByTaskCode
+
+**仕様**
 - 設問4にて実装したサブメニューに、削除用の選択肢を追加すること
   ```
   以下1~3から好きな選択肢を選んでください。
