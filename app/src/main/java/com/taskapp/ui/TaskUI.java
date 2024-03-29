@@ -23,6 +23,12 @@ public class TaskUI {
         taskLogic = new TaskLogic();
     }
 
+    /**
+     * 自動採点用に必要なコンストラクタのため、皆さんはこのコンストラクタを利用・削除はしないでください
+     * @param reader
+     * @param userLogic
+     * @param taskLogic
+     */
     public TaskUI(BufferedReader reader, UserLogic userLogic, TaskLogic taskLogic) {
         this.reader = reader;
         this.userLogic = userLogic;
@@ -31,6 +37,11 @@ public class TaskUI {
 
     /**
      * メニューを表示し、ユーザーの入力に基づいてアクションを実行します。
+     *
+     * @see #inputLogin()
+     * @see com.taskapp.logic.TaskLogic#showAll(User)
+     * @see #selectSubMenu()
+     * @see #inputNewInformation()
      */
     public void displayMenu() {
         System.out.println("タスク管理アプリケーションにようこそ!!");
@@ -68,35 +79,46 @@ public class TaskUI {
 
     /**
      * ユーザーからのログイン情報を受け取り、ログイン処理を行います。
+     *
+     * @see com.taskapp.logic.UserLogic#login(String, String)
      */
     // public void inputLogin() {
-
     // }
 
     /**
      * ユーザーからの新規タスク情報を受け取り、新規タスクを登録します。
+     *
+     * @see #isNumeric(String)
+     * @see com.taskapp.logic.TaskLogic#save(int, String, int, User)
      */
     // public void inputNewInformation() {
     // }
 
     /**
      * タスクのステータス変更または削除を選択するサブメニューを表示します。
+     *
+     * @see #inputChangeInformation()
+     * @see #inputDeleteInformation()
      */
     // public void selectSubMenu() {
-
     // }
 
     /**
      * ユーザーからのタスクステータス変更情報を受け取り、タスクのステータスを変更します。
+     *
+     * @see #isNumeric(String)
+     * @see com.taskapp.logic.TaskLogic#changeStatus(int, int, User)
      */
     // public void inputChangeInformation() {
     // }
 
     /**
      * ユーザーからのタスク削除情報を受け取り、タスクを削除します。
+     *
+     * @see #isNumeric(String)
+     * @see com.taskapp.logic.TaskLogic#delete(int)
      */
     // public void inputDeleteInformation() {
-
     // }
 
     /**
