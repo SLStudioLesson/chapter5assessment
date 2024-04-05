@@ -8,6 +8,10 @@ public class LogDataAccess {
         filePath = "app/src/main/resources/logs.csv";
     }
 
+    /**
+     * 自動採点用に必要なコンストラクタのため、皆さんはこのコンストラクタを利用・削除はしないでください
+     * @param filePath
+     */
     public LogDataAccess(String filePath) {
         this.filePath = filePath;
     }
@@ -17,7 +21,12 @@ public class LogDataAccess {
      *
      * @param log 保存するログ
      */
-    // public void save() {
+    // public void save(Log log) {
+    //     try () {
+
+    //     } catch (IOException e) {
+    //         e.printStackTrace();
+    //     }
     // }
 
     /**
@@ -26,7 +35,12 @@ public class LogDataAccess {
      * @return すべてのログのリスト
      */
     // public List<Log> findAll() {
+    //     try () {
 
+    //     } catch (IOException e) {
+    //         e.printStackTrace();
+    //     }
+    //     return null;
     // }
 
     /**
@@ -34,8 +48,12 @@ public class LogDataAccess {
      *
      * @param taskCode 削除するログのタスクコード
      */
-    // public void deleteByTaskCode() {
+    // public void deleteByTaskCode(int taskCode) {
+    //     try () {
 
+    //     } catch (IOException e) {
+    //         e.printStackTrace();
+    //     }
     // }
 
 }

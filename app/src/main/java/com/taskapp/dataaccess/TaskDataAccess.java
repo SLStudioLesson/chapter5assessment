@@ -11,6 +11,11 @@ public class TaskDataAccess {
         userDataAccess = new UserDataAccess();
     }
 
+    /**
+     * 自動採点用に必要なコンストラクタのため、皆さんはこのコンストラクタを利用・削除はしないでください
+     * @param filePath
+     * @param userDataAccess
+     */
     public TaskDataAccess(String filePath, UserDataAccess userDataAccess) {
         this.filePath = filePath;
         this.userDataAccess = userDataAccess;
@@ -18,18 +23,29 @@ public class TaskDataAccess {
 
     /**
      * CSVから全てのタスクデータを取得します。
+     *
+     * @see com.taskapp.dataaccess.UserDataAccess#findByCode(int)
      * @return タスクのリスト
      */
     // public List<Task> findAll() {
+    //     try () {
 
+    //     } catch (IOException e) {
+    //         e.printStackTrace();
+    //     }
+    //     return null;
     // }
 
     /**
      * タスクをCSVに保存します。
      * @param task 保存するタスク
      */
-    // public void save() {
+    // public void save(Task task) {
+    //     try () {
 
+    //     } catch (IOException e) {
+    //         e.printStackTrace();
+    //     }
     // }
 
     /**
@@ -37,24 +53,37 @@ public class TaskDataAccess {
      * @param code 取得するタスクのコード
      * @return 取得したタスク
      */
-    // public Task findByCode() {
+    // public Task findByCode(int code) {
+    //     try () {
 
+    //     } catch (IOException e) {
+    //         e.printStackTrace();
+    //     }
+    //     return null;
     // }
 
     /**
      * タスクデータを更新します。
      * @param updateTask 更新するタスク
      */
-    // public void update() {
+    // public void update(Task updateTask) {
+    //     try () {
 
+    //     } catch (IOException e) {
+    //         e.printStackTrace();
+    //     }
     // }
 
     /**
      * コードを基にタスクデータを削除します。
      * @param code 削除するタスクのコード
      */
-    // public void delete() {
+    // public void delete(int code) {
+    //     try () {
 
+    //     } catch (IOException e) {
+    //         e.printStackTrace();
+    //     }
     // }
 
 }
