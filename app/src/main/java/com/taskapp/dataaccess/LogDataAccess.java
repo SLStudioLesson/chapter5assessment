@@ -46,6 +46,7 @@ public class LogDataAccess {
     /**
      * 指定したタスクコードに該当するログを削除します。
      *
+     * @see #findAll()
      * @param taskCode 削除するログのタスクコード
      */
     // public void deleteByTaskCode(int taskCode) {
@@ -54,6 +55,15 @@ public class LogDataAccess {
     //     } catch (IOException e) {
     //         e.printStackTrace();
     //     }
+    // }
+
+    /**
+     * ログをCSVファイルに書き込むためのフォーマットを作成します。
+     *
+     * @param log フォーマットを作成するログ
+     * @return CSVファイルに書き込むためのフォーマット
+     */
+    // private String createLine(Log log) {
     // }
 
 }
