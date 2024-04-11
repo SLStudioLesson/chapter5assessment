@@ -28,6 +28,7 @@ CSVを使ったタスク管理アプリケーションを実装します。
 - 実行時に`Build failed, do you want to continue.`という警告が出たときは`continue`を選択すると実行可能
 - IOExceptionは、throwsせずにそのメソッド内でcatchして `printStackTRace`メソッドを実行してください
   - こちらで既にtry-catchを書いているメソッドもありますが、設問の都合上書いてないメソッドもあります。
+- `AppException`は、`exception`パッケージに用意しているのでそれを利用すること
 
 ### CSVデータの仕様
 必要なcsvファイルは`src/main/resources`フォルダ内に保存されています。
