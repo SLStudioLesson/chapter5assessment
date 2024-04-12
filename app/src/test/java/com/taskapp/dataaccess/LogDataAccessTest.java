@@ -2,9 +2,12 @@ package com.taskapp.dataaccess;
 import static org.assertj.core.api.Assertions.*;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,27 +25,26 @@ public class LogDataAccessTest {
     private LogDataAccess logDataAccess;
 
     @BeforeEach
-    public void setUp() {
-        File originalFile = new File(TEST_FILE_PATH);
-        File backupFile = new File(BACKUP_FILE_PATH);
-        if (originalFile.exists()) {
-            originalFile.renameTo(backupFile);
+    public void setUp() throws IOException {
+        Path originalFile = Paths.get(TEST_FILE_PATH);
+        Path backupFile = Paths.get(BACKUP_FILE_PATH);
+
+        // 万が一バックアップ用のファイルが削除されていなかった時の対処
+        if (Files.exists(backupFile)) {
+            tearDown();
         }
+
+        Files.copy(originalFile, backupFile);
 
         logDataAccess = new LogDataAccess(TEST_FILE_PATH);
     }
 
     @AfterEach
-    public void tearDown() {
-        File testFile = new File(TEST_FILE_PATH);
-        if (testFile.exists()) {
-            testFile.delete();
-        }
-
-        File backupFile = new File(BACKUP_FILE_PATH);
-        if (backupFile.exists()) {
-            backupFile.renameTo(new File(TEST_FILE_PATH));
-        }
+    public void tearDown() throws IOException {
+        Path originalFile = Paths.get(TEST_FILE_PATH);
+        Path backupFile = Paths.get(BACKUP_FILE_PATH);
+        Files.copy(backupFile, originalFile, StandardCopyOption.REPLACE_EXISTING);
+        Files.delete(backupFile);
     }
 
     @Tag("Q3")
@@ -62,7 +64,6 @@ public class LogDataAccessTest {
     public void testFindAll() {
         List<Log> actuaList = logDataAccess.findAll();
         List<Log> expectedList = readLogsFromFile(TEST_FILE_PATH);
-        assertThat(actuaList).isEmpty();
         assertThat(actuaList).isEqualTo(expectedList);
     }
 
@@ -81,7 +82,7 @@ public class LogDataAccessTest {
 
         List<Log> logs = readLogsFromFile(TEST_FILE_PATH);
 
-        assertThat(logs).hasSize(2);
+        assertThat(logs).hasSize(8);
         assertThat(logs).doesNotContain(log2);
     }
 

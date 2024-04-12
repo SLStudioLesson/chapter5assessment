@@ -3,9 +3,12 @@ package com.taskapp.dataaccess;
 import static org.assertj.core.api.Assertions.*;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,28 +28,27 @@ public class TaskDataAccessTest {
     private UserDataAccess userDataAccess;
 
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws IOException {
         // Backup the original file
-        File originalFile = new File(TEST_FILE_PATH);
-        File backupFile = new File(BACKUP_FILE_PATH);
-        if (originalFile.exists()) {
-            originalFile.renameTo(backupFile);
+        Path originalFile = Paths.get(TEST_FILE_PATH);
+        Path backupFile = Paths.get(BACKUP_FILE_PATH);
+
+        // 万が一バックアップ用のファイルが削除されていなかった時の対処
+        if (Files.exists(backupFile)) {
+            tearDown();
         }
+        Files.copy(originalFile, backupFile);
+
         userDataAccess = new UserDataAccess(TEST_FILE_PATH_USER);
         taskDataAccess = new TaskDataAccess(TEST_FILE_PATH, userDataAccess);
     }
 
     @AfterEach
-    public void tearDown() {
-        File testFile = new File(TEST_FILE_PATH);
-        if (testFile.exists()) {
-            testFile.delete();
-        }
-
-        File backupFile = new File(BACKUP_FILE_PATH);
-        if (backupFile.exists()) {
-            backupFile.renameTo(new File(TEST_FILE_PATH));
-        }
+    public void tearDown() throws IOException {
+        Path originalFile = Paths.get(TEST_FILE_PATH);
+        Path backupFile = Paths.get(BACKUP_FILE_PATH);
+        Files.copy(backupFile, originalFile, StandardCopyOption.REPLACE_EXISTING);
+        Files.delete(backupFile);
     }
 
     @Tag("Q3")
@@ -67,7 +69,6 @@ public class TaskDataAccessTest {
     public void testFindAll() {
         List<Task> actualList = taskDataAccess.findAll();
         List<Task> expectedList = readTasksFromFile(TEST_FILE_PATH);
-        assertThat(actualList).isEmpty();
         assertThat(actualList).isEqualTo(expectedList);
     }
 
@@ -124,7 +125,7 @@ public class TaskDataAccessTest {
 
         List<Task> tasks = readTasksFromFile(TEST_FILE_PATH);
 
-        assertThat(tasks).hasSize(2);
+        assertThat(tasks).hasSize(5);
         assertThat(tasks).doesNotContain(task2);
     }
 

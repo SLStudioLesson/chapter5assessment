@@ -86,4 +86,11 @@ public class TaskDataAccess {
     //     }
     // }
 
+    /**
+     * タスクデータをCSVに書き込むためのフォーマットを作成します。
+     * @param task フォーマットを作成するタスク
+     * @return CSVに書き込むためのフォーマット文字列
+     */
+    // private String createLine(Task task) {
+    // }
 }
